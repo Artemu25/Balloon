@@ -30,7 +30,7 @@ AFRAME.registerComponent("koo", {
       // var rgbmCubeMap = new THREE.CubeTextureLoader()
       // .setPath( './' ).load(
       var texture = new THREE.TextureLoader().load(
-        "./lebombo_2k.png",
+        "./lebombo_2k_blurred.png",
         function() {
           var cubeTex = targetCube.fromEquirectangularTexture(renderer, texture);
           // hdrCubeRenderTarget = pmremGenerator.fromCubemap( texture );
@@ -44,8 +44,8 @@ AFRAME.registerComponent("koo", {
             if (el.material) {
               console.log('kek');
               el.material.envMap = cubeTex.texture;
-              el.material.envMapIntensity = 0.07;
-              el.material.roughness = 0.11;
+              el.material.envMapIntensity = 0.15;
+              el.material.roughness = 0.99;
               //el.material.metalness = 0.7;
               //el.material.emissiveIntensity = 0;
               el.material.needsUpdate = true;
