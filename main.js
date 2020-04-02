@@ -27,25 +27,25 @@ AFRAME.registerComponent("koo", {
       var hdrUrls = [ 'px.hdr', 'nx.hdr', 'py.hdr', 'ny.hdr', 'pz.hdr', 'nz.hdr' ];
       var rgbmUrls = [ 'px.png', 'nx.png', 'py.png', 'ny.png', 'pz.png', 'nz.png' ];
       //var texture 
-      var rgbmCubeMap = new THREE.CubeTextureLoader()
-      .setPath( './' ).load(
-      //var texture = new THREE.TextureLoader().load(
-        rgbmUrls,
+      // var rgbmCubeMap = new THREE.CubeTextureLoader()
+      // .setPath( './' ).load(
+      var texture = new THREE.TextureLoader().load(
+        "./lebombo_2k.png",
         function() {
-          //var cubeTex = targetCube.fromEquirectangularTexture(renderer, texture);
+          var cubeTex = targetCube.fromEquirectangularTexture(renderer, texture);
           // hdrCubeRenderTarget = pmremGenerator.fromCubemap( texture );
 					// texture.magFilter = THREE.LinearFilter;
           // texture.needsUpdate = true;
 
-          rgbmCubeMap.encoding = THREE.RGBM16Encoding;
-					rgbmCubeMap.format = THREE.RGBAFormat;
+          // rgbmCubeMap.encoding = THREE.RGBM16Encoding;
+					// rgbmCubeMap.format = THREE.RGBAFormat;
 
           mesh.traverse(function(el) {
             if (el.material) {
               console.log('kek');
-              el.material.envMap = texture;//cubeTex.texture;
-              el.material.envMapIntensity = 1;
-              el.material.roughness = 0;
+              el.material.envMap = cubeTex.texture;
+              el.material.envMapIntensity = 0.07;
+              el.material.roughness = 0.11;
               //el.material.metalness = 0.7;
               //el.material.emissiveIntensity = 0;
               el.material.needsUpdate = true;

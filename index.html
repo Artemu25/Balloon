@@ -17,39 +17,39 @@
       THREEx.ArToolkitContext.baseURL = 'not-used';
     </script>
     <script>
-      function detectWebcam(callback) {
-        let md = navigator.mediaDevices;
-        if (!md || !md.enumerateDevices) return callback(false);
-        md.enumerateDevices().then(devices => {
-          callback(devices.some(device => 'videoinput' === device.kind));
-        });
-      }
-      let mobile = false;
-      //
-      function isIpad() {
-        const ua = window.navigator.userAgent;
-        if (ua.indexOf('iPad') > -1) {
-          return true;
-        }
+    //   function detectWebcam(callback) {
+    //     let md = navigator.mediaDevices;
+    //     if (!md || !md.enumerateDevices) return callback(false);
+    //     md.enumerateDevices().then(devices => {
+    //       callback(devices.some(device => 'videoinput' === device.kind));
+    //     });
+    //   }
+    //   let mobile = false;
+    //   //
+    //   function isIpad() {
+    //     const ua = window.navigator.userAgent;
+    //     if (ua.indexOf('iPad') > -1) {
+    //       return true;
+    //     }
 
-        if (ua.indexOf('Macintosh') > -1) {
-          try {
-            document.createEvent('TouchEvent');
-            return true;
-          } catch (e) {}
-        }
+    //     if (ua.indexOf('Macintosh') > -1) {
+    //       try {
+    //         document.createEvent('TouchEvent');
+    //         return true;
+    //       } catch (e) {}
+    //     }
 
-      let ipad = isIpad();
-      if (!mobile && !ipad) {
-        window.location = './desktop.html';
-      } else {
-        detectWebcam(function(hasWebcam) {
-          if (!hasWebcam) {
-            window.location = './redir.html';
-          }
-        });
-      }
-    }
+    //   let ipad = isIpad();
+    //   if (!mobile && !ipad) {
+    //     window.location = './desktop.html';
+    //   } else {
+    //     detectWebcam(function(hasWebcam) {
+    //       if (!hasWebcam) {
+    //         window.location = './redir.html';
+    //       }
+    //     });
+    //   }
+    // }
     </script>
 
     <script>
@@ -152,7 +152,7 @@
       </a-assets>
       <!-- <a-sky src="#skybox"></a-sky> -->
       <a-light type="ambient" color="#fff" intensity=0.6></a-light>
-      <a-light type="directional" color="#fff" intensity=0.3 position="0 0 -1"></a-light>
+      <!-- <a-light type="directional" color="#fff" intensity=0.3 position="0 0 -1"></a-light> -->
 
       <a-entity gltf-model="#balloon" position="0 0 -10" rotation="0 7 0" koo></a-entity>
     </a-scene>
