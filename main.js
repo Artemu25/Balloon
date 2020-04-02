@@ -52,13 +52,14 @@ AFRAME.registerComponent("koo", {
               /*var roughtex = new THREE.TextureLoader().load( 'Rougness.png', function(){
                 el.material.roughnessMap = roughtex;
               } );*/
+              renderer.toneMappingExposure = 1;
+               renderer.toneMapping = THREE.ACESFilmicToneMapping;
+              renderer.outputEncoding = THREE.sRGBEncoding;
             }
           });
 
           //cubeTex.minFilter = THREE.NearestMipmapNearestFilter;
-          renderer.toneMappingExposure = 1;
-          renderer.toneMapping = THREE.ACESFilmicToneMapping;
-          renderer.outputEncoding = THREE.sRGBEncoding;
+          
         }
       );
     });
