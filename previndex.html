@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/ico" />
+
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="mobile1.css" />
+    <meta
+      name="viewport"
+      user-scalable="0"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <script src="disablezoom.js"></script>
+    <script>
+      function detectWebcam(callback) {
+        let md = navigator.mediaDevices;
+        if (!md || !md.enumerateDevices) return callback(false);
+        md.enumerateDevices().then(devices => {
+          callback(devices.some(device => 'videoinput' === device.kind));
+        });
+      }
+      let mobile = false;
+      //
+      function isIpad() {
+        const ua = window.navigator.userAgent;
+        if (ua.indexOf('iPad') > -1) {
+          return true;
+        }
+
+        if (ua.indexOf('Macintosh') > -1) {
+          try {
+            document.createEvent('TouchEvent');
+            return true;
+          } catch (e) {}
+        }
+
+        return false;
+      }
+      //
+      navigator.userAgent.split(' ').forEach(elem => {
+        if (elem === 'iPhone' || elem === 'Mobile' || elem === '(iPad;') {
+          mobile = true;
+        }
+      });
+
+      let ipad = isIpad();
+      if (!mobile && !ipad) {
+        window.location = './desktop.html';
+      } else {
+        detectWebcam(function(hasWebcam) {
+          if (!hasWebcam) {
+            window.location = './redir.html';
+          }
+        });
+      }
+    </script>
+    <title>#CБЕРеги себя</title>
+  </head>
+  <body>
+    <main class="main">
+      <div class="content-wrapper">
+        <img
+          width="245px"
+          height="128px"
+          class="icon-save"
+          src="./icon-save.svg"
+        />
+        <p class="content-info">
+          Режим всеобщей самоизоляции диктует новые порядки. СБЕР помогаем к ним
+          привыкнуть. С этим приложением тебе будет удобно соблюдать безопасную
+          дистанцию до других не менее чем в 1,5 метра. И лучше оставайся дома и
+          пользуйся онлайн сервисами СБЕРа!
+        </p>
+        <img class="ppl-icon" width="173px" height="113px" src="ppl.svg" />
+        <a class="next-link" href="./mobile2.html">Продолжить</a>
+      </div>
+    </main>
+  </body>
+</html>
