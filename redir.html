@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/ico" />
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="redir.css" />
+    <meta
+      name="viewport"
+      user-scalable="0"
+      content="width=device-width,
+    initial-scale=1.0"
+    />
+    <script>
+      function detectWebcam(callback) {
+        let md = navigator.mediaDevices;
+        if (!md || !md.enumerateDevices) return callback(false);
+        md.enumerateDevices().then(devices => {
+          callback(devices.some(device => 'videoinput' === device.kind));
+        });
+      }
+      let mobile = false;
+      //
+      function isIpad() {
+        const ua = window.navigator.userAgent;
+        if (ua.indexOf('iPad') > -1) {
+          return true;
+        }
+
+        if (ua.indexOf('Macintosh') > -1) {
+          try {
+            document.createEvent('TouchEvent');
+            return true;
+          } catch (e) {}
+        }
+
+        return false;
+      }
+      //
+      navigator.userAgent.split(' ').forEach(elem => {
+        if (elem === 'iPhone' || elem === 'Mobile' || elem === '(iPad;') {
+          mobile = true;
+        }
+      });
+
+      let ipad = isIpad();
+      if (mobile || ipad) {
+		detectWebcam(function(hasWebcam) {
+          if (hasWebcam) {
+            window.location = './index.html';
+          }
+		});
+	  }
+    </script>
+
+    <title>#CБЕРеги себя</title>
+  </head>
+  <body>
+    <main class="main">
+      <div class="flex-wrapper">
+        <img
+          width="245px"
+          height="128px"
+          class="icon-save"
+          src="./icon-save.svg"
+        />
+        <div class="content-wrapper">
+          <p class="content-info">
+            Откройте сайт в Safari, чтобы увидеть AR
+          </p>
+          <a class="next-link" href="http://sberbank.ru/promo/eco/ar/"
+            >Скопировать ссылку</a
+          >
+          <a class="undo-link">http://sberbank.ru/promo/eco/ar/</a>
+        </div>
+      </div>
+    </main>
+    <script>
+      //
+      let copyEmailBtn = document.querySelector('.next-link');
+      copyEmailBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        // Select the email link anchor text
+        var emailLink = document.querySelector('.undo-link');
+        var range = document.createRange();
+        range.selectNode(emailLink);
+        window.getSelection().addRange(range);
+
+        try {
+          // Now that we've selected the anchor text, execute the copy command
+          var successful = document.execCommand('copy');
+          var msg = successful ? 'successful' : 'unsuccessful';
+        } catch (err) {}
+
+        // Remove the selections - NOTE: Should use
+        // removeRange(range) when it is supported
+        window.getSelection().removeAllRanges();
+      });
+      //
+
+      document
+        .querySelector('.undo-link')
+        .addEventListener('click', function(e) {
+          e.preventDefault();
+        });
+    </script>
+  </body>
+</html>

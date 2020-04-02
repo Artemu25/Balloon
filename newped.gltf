@@ -1,0 +1,150 @@
+{
+    "asset": {
+        "version": "2.0",
+        "generator": "Open Asset Import Library (assimp v5.0.5eb040c7)"
+    },
+    "accessors": [
+        {
+            "bufferView": 0,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 392,
+            "type": "VEC3",
+            "max": [
+                92.71015930175781,
+                27.287656784057618,
+                -0.0
+            ],
+            "min": [
+                -93.18898010253906,
+                -29.473215103149415,
+                -5.0
+            ]
+        },
+        {
+            "bufferView": 1,
+            "byteOffset": 0,
+            "componentType": 5126,
+            "count": 392,
+            "type": "VEC3",
+            "max": [
+                0.9996829628944397,
+                0.9998700618743897,
+                1.0
+            ],
+            "min": [
+                -0.9991742968559265,
+                -0.9999955296516419,
+                -1.0
+            ]
+        },
+        {
+            "bufferView": 2,
+            "byteOffset": 0,
+            "componentType": 5125,
+            "count": 1164,
+            "type": "SCALAR",
+            "max": [
+                391
+            ],
+            "min": [
+                0
+            ]
+        }
+    ],
+    "buffers": [
+        {
+            "byteLength": 14064,
+            "uri": "result.bin"
+        }
+    ],
+    "bufferViews": [
+        {
+            "buffer": 0,
+            "byteOffset": 0,
+            "byteLength": 4704,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 4704,
+            "byteLength": 4704,
+            "target": 34962
+        },
+        {
+            "buffer": 0,
+            "byteOffset": 9408,
+            "byteLength": 4656,
+            "target": 34963
+        }
+    ],
+    "materials": [
+        {
+            "name": "Extrude",
+            "pbrMetallicRoughness": {
+                "baseColorFactor": [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929,
+                    1.0
+                ],
+                "metallicFactor": 0.0,
+                "roughnessFactor": 0.8482106924057007
+            }
+        }
+    ],
+    "meshes": [
+        {
+            "name": "Mesh.003",
+            "primitives": [
+                {
+                    "mode": 4,
+                    "material": 0,
+                    "indices": 2,
+                    "attributes": {
+                        "POSITION": 0,
+                        "NORMAL": 1
+                    }
+                }
+            ]
+        }
+    ],
+    "nodes": [
+        {
+            "name": "RootNode",
+            "children": [
+                1
+            ]
+        },
+        {
+            "name": "Extrude",
+            "matrix": [
+                1.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                -1.6292068494294654e-7,
+                -1.0,
+                0.0,
+                0.0,
+                1.0,
+                -1.6292068494294654e-7,
+                0.0,
+                0.0,
+                18.970888137817384,
+                1.1616318894137434e-15,
+                1.0
+            ],
+            "mesh": 0
+        }
+    ],
+    "scenes": [
+        {
+            "nodes": [
+                0
+            ]
+        }
+    ],
+    "scene": 0
+}

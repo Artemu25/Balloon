@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'SB Sans Text';
+  src: url('fonts/SBSansText-Regular.eot');
+  src: url('fonts/SBSansText-Regular.woff') format('woff'),
+    url('fonts/SBSansText-Regular.svg') format('svg'),
+    url('fonts/SBSansText-Regular.ttf') format('ttf');
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/ico" />
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="desktop.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>#CБЕРеги себя</title>
+    <script>
+      let mobile = false;
+      //
+      function isIpad() {
+        const ua = window.navigator.userAgent;
+        if (ua.indexOf('iPad') > -1) {
+          return true;
+        }
+        if (ua.indexOf('Macintosh') > -1) {
+          try {
+            document.createEvent('TouchEvent');
+            return true;
+          } catch (e) {}
+        }
+        return false;
+      }
+      //
+      navigator.userAgent.split(' ').forEach(elem => {
+        if (elem === 'iPhone' || elem === 'Mobile' || elem === '(iPad;') {
+          mobile = true;
+        }
+      });
+	  
+	  let ipad = isIpad();
+	  if (mobile || ipad) {
+		window.location = './index.html';
+	  }
+    </script>
+  </head>
+
+  <body>
+    <main class="main">
+      <section class="flex-content">
+        <img
+          width="245px"
+          height="128px"
+          class="icon-save"
+          src="icon-save.svg"
+          alt="#CБЕРеги себя"
+        />
+        <div class="qr-wrapper">
+          <div class="img-wrapepr">
+            <img
+              width="230px"
+              height="230px"
+              class="qr-code"
+              src="qr-code.svg"
+              alt="QR-code"
+            />
+          </div>
+        </div>
+        <div class="info-wrapper">
+          <p class="main-info">
+            Чтобы просмотреть контент отсканируйте QR-код камерой телефона
+          </p>
+          <div class="link-wrapper">
+            <a href="#"> http://sberbank.ru/promo/eco/ar/</a>
+          </div>
+          <p class="link-info">
+            или перейдите по ссылкe с телефона или планшета
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="zone.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>#CБЕРеги себя</title>
+    <script src="disablezoom.js"></script>
+    <script src="aframe.min_1.0.4.js"></script>
+    <script src="aframe-ar-nft.js"></script>
+    <!-- <script type="module" src="HDRCubeTextureLoader.js"></script> -->
+    <script type="module" src="main.js"></script>
+    <script src="https://unpkg.com/merge-images"></script>
+    <script src="aframe-render-order-component.min.js"></script>
+    <script>
+      THREEx.ArToolkitContext.baseURL = 'not-used';
+    </script>
+    <script>
+      function detectWebcam(callback) {
+        let md = navigator.mediaDevices;
+        if (!md || !md.enumerateDevices) return callback(false);
+        md.enumerateDevices().then(devices => {
+          callback(devices.some(device => 'videoinput' === device.kind));
+        });
+      }
+      let mobile = false;
+      //
+      function isIpad() {
+        const ua = window.navigator.userAgent;
+        if (ua.indexOf('iPad') > -1) {
+          return true;
+        }
+
+        if (ua.indexOf('Macintosh') > -1) {
+          try {
+            document.createEvent('TouchEvent');
+            return true;
+          } catch (e) {}
+        }
+
+      let ipad = isIpad();
+      if (!mobile && !ipad) {
+        window.location = './desktop.html';
+      } else {
+        detectWebcam(function(hasWebcam) {
+          if (!hasWebcam) {
+            window.location = './redir.html';
+          }
+        });
+      }
+    }
+    </script>
+
+    <script>
+      setTimeout(function() {
+        let page = document.querySelector('.page-wrapper');
+        if (page !== null) {
+          page.style.opacity = '0';
+          page.remove();
+        }
+      }, 5000);
+      document.addEventListener('click', function(e) {
+        console.log(e.target);
+
+        let page = document.querySelector('.page-wrapper');
+        if (page !== null) {
+          page.style.opacity = '0';
+          page.remove();
+        }
+      });
+    </script>
+    <style>
+      body {
+        box-sizing: border-box;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .change-btn {
+        outline: none;
+        color: white;
+        background-color: rgba(59, 152, 68, 0.8);
+        border-radius: 30px;
+        font-family: 'SB Sans Text', sans-serif;
+        font-weight: lighter;
+        text-align: center;
+        padding: 10px 50px;
+        font-size: 14px;
+        border: none;
+        position: relative;
+        display: inline-block;
+        min-width: fit-content;
+        z-index: 10;
+        /* position: fixed; */
+        /* left: calc(50vw - 115px);
+              top: 2rem; */
+        /* margin-left: auto;
+              margin-right: auto; */
+        margin: auto;
+      }
+    </style>
+  </head>
+
+  <body style="margin: 0; overflow: hidden;">
+    <div
+      style="position: fixed; top: 10px; width:100%; text-align: center; z-index: 1;"
+    ></div>
+    <a-scene
+      vr-mode-ui="enabled: false"
+      embedded
+      screenshot
+      arjs
+    >
+      <!-- look-controls-enabled='false' -->
+      <a-camera id="main-camera" rotation-reader> </a-camera>
+      <a-assets>
+        <!-- <img id="safe-texture-0" src="safe-texture.png">
+			<img id="safe-texture-1" src="safe-texture-1.png">
+			<img id="safe-texture-2" src="safe-texture-2.png"> -->
+        <img id="inner-circle" src="inner-circle.png" />
+
+        <!-- new images -->
+        <img id="safe-texture-back" src="Circle_Back.png" />
+        <img id="safe-texture-sign-0" src="Circle_Sign_01.png" />
+
+        <!-- <img id="safe-texture-0" src="Circle_v01.png" />
+        <img id="safe-texture-1" src="Circle_v02.png" />
+        <img id="safe-texture-2" src="Circle_v03.png" />
+        <img id="safe-texture-3" src="Circle_v04.png" />
+        <img id="safe-texture-4" src="Circle_v05.png" />
+        <img id="safe-texture-5" src="Circle_v06.png" />
+        <img id="safe-texture-6" src="Circle_v07.png" />
+        <img id="safe-texture-7" src="Circle_v08.png" />
+
+        <img id="pedestal-texture-0" src="Extrude w-sign 01.png" />
+        <img id="pedestal-texture-1" src="Extrude w-sign 02.png" />
+        <img id="pedestal-texture-2" src="Extrude w-sign 03.png" />
+        <img id="pedestal-texture-3" src="Extrude w-sign 04.png" />
+        <img id="pedestal-texture-4" src="Extrude w-sign 05.png" />
+        <img id="pedestal-texture-5" src="Extrude w-sign 06.png" />
+        <img id="pedestal-texture-6" src="Extrude w-sign 07.png" />
+        <img id="pedestal-texture-7" src="Extrude w-sign 08.png" /> -->
+
+        <img id="skybox" src="skybox.png" />
+        <a-asset-item id="extrude" src="Extrude.obj"></a-asset-item>
+        <a-asset-item id="home" src="Home.obj"></a-asset-item>
+        <a-asset-item id="balloon" src="Balloon.gltf"></a-asset-item>
+
+        <img id="ExtrudeTexture" src="ExtrudeTexture.png" />
+        <img id="HomeTexture" src="HomeTex.png" />
+      </a-assets>
+      <!-- <a-sky src="#skybox"></a-sky> -->
+      <a-light type="ambient" color="#fff" intensity=0.6></a-light>
+      <a-light type="directional" color="#fff" intensity=0.3 position="0 0 -1"></a-light>
+
+      <a-entity gltf-model="#balloon" position="0 0 -10" rotation="0 7 0" koo></a-entity>
+    </a-scene>
+    <div class="button-wrapper">
+      <button
+        class="change-btn"
+        onclick="
+        var fooComponent = document.querySelector('[safezone]').components.safezone;
+      
+        //console.log(fooComponent.bar);
+        fooComponent.setVisibility();
+        "
+      >
+        <span><img class="left-arr" src="arr-left.svg" alt="<"/></span>
+        <span
+          class="btn-text"
+          
+          >В магазине</span>
+
+        <span> <img class="right-arr" src="arr-right.svg" alt=">"/></span>
+      </button>
+    </div>
+    <!--
+  <div class="button-wrapper-share">
+      <img src="shot.svg" class="share-btn" id="shareButton" />
+    
+    </div>-->
+  </body>
+  <div class="page-wrapper">
+    <div class="flex-wrapper">
+      <div class="top-side">
+        <img src="arr1.svg" class="top-arr" />
+        <p class="arr-text">Выбери, где ты находишься</p>
+      </div>
+      <div class="bot-side">
+        <p class="arr-text">Посмотри себе под ноги</p>
+        <img src="arr2.svg" class="bot-arr" />
+      </div>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/ico" />
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="mobile2.css" />
+    <meta
+      name="viewport"
+      user-scalable="0"
+      content="width=device-width,
+    initial-scale=1.0,"
+    />
+    <script src="disablezoom.js"></script>
+    <script>
+      function detectWebcam(callback) {
+        let md = navigator.mediaDevices;
+        if (!md || !md.enumerateDevices) return callback(false);
+        md.enumerateDevices().then(devices => {
+          callback(devices.some(device => 'videoinput' === device.kind));
+        });
+      }
+      let mobile = false;
+      //
+      function isIpad() {
+        const ua = window.navigator.userAgent;
+        if (ua.indexOf('iPad') > -1) {
+          return true;
+        }
+
+        if (ua.indexOf('Macintosh') > -1) {
+          try {
+            document.createEvent('TouchEvent');
+            return true;
+          } catch (e) {}
+        }
+
+        return false;
+      }
+      //
+      navigator.userAgent.split(' ').forEach(elem => {
+        if (elem === 'iPhone' || elem === 'Mobile' || elem === '(iPad;') {
+          mobile = true;
+        }
+      });
+
+      let ipad = isIpad();
+      if (!mobile && !ipad) {
+        window.location = './desktop.html';
+      } else {
+        detectWebcam(function(hasWebcam) {
+          if (!hasWebcam) {
+            window.location = './redir.html';
+          }
+        });
+      }
+    </script>
+    <title>#CБЕРеги себя</title>
+  </head>
+  <body>
+    <main class="main">
+      <div class="flex-wrapper">
+        <img
+          width="245px"
+          height="128px"
+          class="icon-save"
+          src="./icon-save.svg"
+        />
+        <div class="content-wrapper">
+          <div class="icon-wrapper">
+            <img class="ar-icon" src="Vector.svg" alt="AR icon" />
+          </div>
+          <p class="content-info">
+            Необходим доступ к AR датчикам движения вашего устройства
+          </p>
+          <a class="next-link" href="./SBERegi.html">Продолжить</a>
+          <a class="undo-link" href="./index.html">Отмена</a>
+        </div>
+      </div>
+    </main>
+    <script>
+      document.querySelector('.next-link').addEventListener('click', e => {
+        e.preventDefault();
+
+        if (
+          typeof DeviceOrientationEvent === 'undefined' ||
+          !DeviceOrientationEvent.requestPermission
+        ) {
+          window.open('./SBERegi.html', '_self');
+        } else {
+          DeviceOrientationEvent.requestPermission()
+            .then(function(response) {
+              if (response === 'granted') {
+                window.open('./SBERegi.html', '_self');
+              } else {
+                self.el.emit('deviceorientationpermissionrejected');
+              }
+              self.remove();
+            })
+            .catch(console.error);
+        }
+      });
+    </script>
+  </body>
+</html>
